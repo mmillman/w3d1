@@ -19,6 +19,9 @@ class TreeNode
     end
   end
 
-
+  def dfs(value)
+    return self.value if self.value == value
+    children.each { |child| child.dfs (value) }
+  end
 end
 
