@@ -29,4 +29,12 @@ class TowerOfHanoi
       true
     end
   end
+
+  def num_disks
+    @rods.flatten.count
+  end
+
+  def win?
+    @rods[2].count == num_disks
+  end
 end

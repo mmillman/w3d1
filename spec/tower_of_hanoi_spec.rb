@@ -27,9 +27,10 @@ describe TowerOfHanoi do
   end
 
   context "winning game" do
-    subject { TowerOfHanoi.new(3) }
+    subject { TowerOfHanoi.new([[], [], [3, 2, 1]]) }
 
     it "detects a win" do
+      subject.should be_win
     end
   end
 
