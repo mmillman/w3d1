@@ -10,7 +10,15 @@ class TreeNode
     @children << child
   end
 
-
+  def bfs(value)
+    queue = [self]
+    until queue.empty?
+      checking_node = queue.shift
+      return checking_node if checking_node.value == value
+      checking_node.children.each { |child| queue << child }
+    end
+  end
 
 
 end
+
