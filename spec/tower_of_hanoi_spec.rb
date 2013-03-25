@@ -2,7 +2,7 @@ require 'rspec'
 require 'tower_of_hanoi'
 
 describe TowerOfHanoi do
-  subject { TowerOfHanoi.new(3) }
+  subject { TowerOfHanoi.new_game }
 
   it "has three disks" do
     subject.rods.flatten.length == 3
@@ -22,4 +22,20 @@ describe TowerOfHanoi do
     expect { subject.move_disk(2, 0) }.to raise_error("InvalidMove")
   end
 
+  it "can't move disk to nonexistant rod" do
+    expect { subject.move_disk(0,3) }.to raise_error("InvalidMove")
+  end
+
+  context "winning game" do
+    subject { TowerOfHanoi.new(3) }
+
+    it "detects a win" do
+    end
+  end
+
 end
+
+
+
+
+
