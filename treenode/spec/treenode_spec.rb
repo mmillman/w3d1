@@ -1,6 +1,8 @@
 require 'rspec'
 require 'treenode'
 
+# REV: Nice and clean code
+
 #     0
 #   1   4
 # 2  3
@@ -17,6 +19,9 @@ describe TreeNode do
     one.add_child(three)
     one.add_child(four)
   end
+
+  # REV: Good use of before
+  # DRY ALL THE WAY!
 
   it "can add children" do
     root = TreeNode.new(:root)
