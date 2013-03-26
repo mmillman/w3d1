@@ -24,6 +24,8 @@ describe TreeNode do
     root.children.count == 5
   end
 
+  # REV seems like there are more tests you should run here, like whether disassociated children have their parent designation deleted
+
   # todo: test return values for each search
 
   describe "BFS" do

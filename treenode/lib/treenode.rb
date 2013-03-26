@@ -20,6 +20,9 @@ class TreeNode
   end
 
   def dfs(value)
+
+    #REV would this have worked with a more complicated tree structure? 
+    #Seems to only ahve passed your test because your tree children didn't have left/right children as well...
     return self.value if self.value == value
     children.each { |child| child.dfs (value) }
   end
