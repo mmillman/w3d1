@@ -1,6 +1,9 @@
 require 'rspec'
 require 'treenode'
 
+#     0
+#   1   4
+# 2  3
 describe TreeNode do
   subject { TreeNode.new(:root) }
   let(:one)   { TreeNode.new(:one)   }
@@ -21,6 +24,7 @@ describe TreeNode do
     root.children.count == 5
   end
 
+  # todo: test return values for each search
 
   describe "BFS" do
     it "visits nodes in correct order" do
