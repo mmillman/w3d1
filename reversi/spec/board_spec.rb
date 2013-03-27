@@ -18,6 +18,7 @@ describe Board do
 
   describe "#set_piece" do
     let(:black_piece) { double('piece', :color => :black ) }
+    # REV: Good use of a mock here.
 
     it "puts piece in the correct place" do
       subject.set_piece(black_piece, [1, 1])
@@ -31,6 +32,7 @@ describe Board do
     let(:taken)     { [4, 4] }
     let(:isolated)  { [1, 1] }
     let(:no_flip)   { [5, 2] }
+    # REV: Nice test cases.
 
     it "rejects a coord off the board" do
       subject.valid_move?(:black, off_board).should equal(false)
