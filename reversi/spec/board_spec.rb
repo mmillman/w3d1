@@ -45,7 +45,7 @@ describe Board do
     end
   end
 
-  context "opening sequence" do
+  context "during opening sequence" do
     let(:coord1) { [2, 3] }
     let(:coord2) { [4, 2] }
     let(:piece1) { double("piece", :color => :black) }
@@ -61,7 +61,21 @@ describe Board do
     end
   end
 
-  it "multiple directions"
-  it "win"
+  context "when multiple row flip available" do
+    subject do
+       Board.new([
+         [Piece.new(:black), nil,               nil],
+         [nil,               Piece.new(:white), nil],
+         [Piece.new(:black), Piece.new(:white), nil]
+       ])
+    end
 
+    it "flips multiple rows" do
+      subject.coords_to_flip(Piece.new(:black), [2, 2])
+        .should == [[1, 1], [2, 1]]
+    end
+
+  end
+
+  # win?
 end

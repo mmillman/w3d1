@@ -44,15 +44,17 @@ class Board
       current_coord = coord
       loop do
         current_coord = next_coord(current_coord, offset)
+        break if off_board?(current_coord)
+        p current_coord
         content = self[*current_coord]
         current_color = content.is_a?(Piece) ? content.color : nil
-        break if off_board?(current_coord) ||
-                 [piece.color, nil].include?(current_color)
+        break if [piece.color, nil].include?(current_color)
 
         coords_to_flip << current_coord
       end
     end
 
+    p coords_to_flip
     coords_to_flip
   end
 
@@ -68,7 +70,7 @@ class Board
   end
 
   def off_board?(coord)
-    coord.any? { |x| !x.between?(0, 7) }
+    coord.any? { |x| !x.between?(0, @board.length - 1) }
   end
 
   def [](*coord)
