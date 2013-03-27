@@ -44,18 +44,24 @@ class Board
       current_coord = coord
       loop do
         current_coord = next_coord(current_coord, offset)
-        break if off_board?(current_coord)
-        p current_coord
-        content = self[*current_coord]
-        current_color = content.is_a?(Piece) ? content.color : nil
-        break if [piece.color, nil].include?(current_color)
-
-        coords_to_flip << current_coord
+        if should_flip?(current_coord, piece.color)
+          coords_to_flip << current_coord
+        else
+          break
+        end
       end
     end
 
     p coords_to_flip
     coords_to_flip
+  end
+
+  def should_flip?(coord, anchor_color)
+    return false if off_board?(coord) # Prevents next line
+    content = self[*coord]
+    color = content.is_a?(Piece) ? content.color : nil
+    return false if [anchor_color, nil].include?(color)
+    true
   end
 
   def adjacent_squares(coord)

@@ -72,9 +72,25 @@ describe Board do
 
     it "flips multiple rows" do
       subject.coords_to_flip(Piece.new(:black), [2, 2])
-        .should == [[1, 1], [2, 1]]
+             .should == [[1, 1], [2, 1]]
+    end
+  end
+
+  context "when multiple long row flip mixed with non flip pieces" do
+    subject do
+      Board.new([
+        [nil, Piece.new(:black), nil, nil, nil],
+        [nil, Piece.new(:white), nil, nil, nil],
+        [nil, Piece.new(:white), nil, nil, nil],
+        [Piece.new(:white), nil, Piece.new(:white), Piece.new(:white), Piece.new(:black)],
+        [Piece.new(:white), Piece.new(:white), nil, nil, nil]
+      ])
     end
 
+    it "flips only anchored directions" do
+      subject.coords_to_flip(Piece.new(:black), [3, 1])
+             .should == [[1, 1], [2, 1], [3, 2], [3, 3]]
+    end
   end
 
   # win?
